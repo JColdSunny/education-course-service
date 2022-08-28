@@ -1,0 +1,23 @@
+grpc:
+  server:
+    address: 127.0.0.1
+    port: 9900
+
+spring:
+  application:
+    name: education-course-service
+  main:
+    web-application-type: NONE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/education_course_service
+    driver-class-name: org.postgresql.Driver
+    username: education
+    password: education
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: none

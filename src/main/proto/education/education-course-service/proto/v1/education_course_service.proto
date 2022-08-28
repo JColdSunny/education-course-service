@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "education/common/proto/education_common.proto";
+
+option go_package = "jcs.education.com/course/service/proto/v1;educationcourseservice;";
+option java_package = "com.jcs.education.course.service.proto.v1";
+option java_outer_classname = "EducationCourseServiceRpc";
+option java_multiple_files = true;
+
+service EducationCourseService {
+  rpc GetCourses(GetCoursesRequest) returns (GetCoursesResponse);
+
+  rpc GetCourseDetails(GetCourseDetailsRequest) returns (GetCourseDetailsResponse);
+}
+
+message GetCoursesRequest {
+  uint32 category_id = 1;
+}
+
+message GetCoursesResponse {
+  repeated education.common.Course courses = 1;
+}
+
+message GetCourseDetailsRequest {
+  uint32 course_id = 1;
+}
+
+message GetCourseDetailsResponse {
+  repeated education.common.Lesson lessons = 1;
+}
