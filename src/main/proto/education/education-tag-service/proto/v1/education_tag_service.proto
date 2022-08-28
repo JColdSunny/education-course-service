@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "education/common/proto/education_common.proto";
+
+option go_package = "jcs.education.com/tag/service/proto/v1;educationtagservice;";
+option java_package = "com.jcs.education.tag.service.proto.v1";
+option java_outer_classname = "EducationTagServiceRpc";
+option java_multiple_files = true;
+
+service EducationTagService {
+  rpc GetTags(GetTagsRequest) returns (GetTagsResponse);
+}
+
+message GetTagsRequest {
+  repeated int32 tag_ids = 1;
+}
+
+message GetTagsResponse {
+  repeated education.common.Tag tags = 1;
+}

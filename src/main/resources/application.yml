@@ -2,6 +2,10 @@ grpc:
   server:
     address: 127.0.0.1
     port: 9900
+  client:
+    education-tag-service:
+      address: static://127.0.0.1:9900
+      keep-alive-timeout: 5
 
 spring:
   application:

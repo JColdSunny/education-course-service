@@ -25,7 +25,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 	implementation "io.grpc:grpc-netty:${grpc_version}"
-	implementation("net.devh:grpc-server-spring-boot-starter:${grpc_server_version}") {
+	implementation("net.devh:grpc-spring-boot-starter:${grpc_server_version}") {
 		exclude group: 'io.grpc', module: 'grpc-netty-shaded'
 	}
 
