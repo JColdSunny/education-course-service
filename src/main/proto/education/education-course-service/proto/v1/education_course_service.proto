@@ -26,5 +26,6 @@ message GetCourseDetailsRequest {
 }
 
 message GetCourseDetailsResponse {
-  repeated education.common.Lesson lessons = 1;
+  education.common.Course course = 1;
+  repeated education.common.Lesson lessons = 2;
 }
