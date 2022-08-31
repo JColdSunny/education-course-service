@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "education/common/proto/education_common.proto";
+
+option java_package = "com.jcs.education.course.unit.service.proto.v1";
+option java_multiple_files = true;
+
+service EducationCourseUnitService {
+  rpc GetCourseUnits(GetCourseUnitsRequest) returns (GetCourseUnitsResponse);
+}
+
+message GetCourseUnitsRequest {
+  int32 course_id = 1;
+}
+
+message GetCourseUnitsResponse {
+  repeated education.common.CourseUnit course_units = 1;
+}
