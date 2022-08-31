@@ -2,9 +2,7 @@ syntax = "proto3";
 
 import "education/common/proto/education_common.proto";
 
-option go_package = "jcs.education.com/course/service/proto/v1;educationcourseservice;";
 option java_package = "com.jcs.education.course.service.proto.v1";
-option java_outer_classname = "EducationCourseServiceRpc";
 option java_multiple_files = true;
 
 service EducationCourseService {

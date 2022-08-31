@@ -13,7 +13,7 @@ import net.devh.boot.grpc.server.service.GrpcService;
 @GrpcService
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class CourseGrpcService extends EducationCourseServiceGrpc.EducationCourseServiceImplBase {
+public class EducationCourseService extends EducationCourseServiceGrpc.EducationCourseServiceImplBase {
     CourseService courseService;
 
     @Override

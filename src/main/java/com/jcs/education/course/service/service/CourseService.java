@@ -7,8 +7,8 @@ import com.jcs.education.course.service.entity.CourseTagEntity;
 import com.jcs.education.course.service.proto.v1.GetCoursesRequest;
 import com.jcs.education.course.service.proto.v1.GetCoursesResponse;
 import com.jcs.education.course.service.repository.CourseRepository;
-import com.jcs.education.tag.service.proto.v1.EducationTagServiceGrpc.EducationTagServiceBlockingStub;
-import com.jcs.education.tag.service.proto.v1.GetTagsRequest;
+import com.jcs.education.utility.service.proto.v1.EducationUtilityServiceGrpc;
+import com.jcs.education.utility.service.proto.v1.GetCourseUtilitiesRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import net.devh.boot.grpc.client.inject.GrpcClient;
@@ -29,20 +29,28 @@ import static lombok.AccessLevel.PRIVATE;
 public class CourseService {
     final CourseRepository courseRepository;
 
-    @GrpcClient("education-tag-service")
-    EducationTagServiceBlockingStub tagService;
+    @GrpcClient("education-utility-service")
+    EducationUtilityServiceGrpc.EducationUtilityServiceBlockingStub utilityService;
 
     public GetCoursesResponse getCourses(GetCoursesRequest request) {
         GetCoursesRequestValidator.validateRequest(request);
 
         List<CourseEntity> courseEntityList = courseRepository.findByCategoryId(request.getCategoryId());
+
+        if (courseEntityList.isEmpty()) {
+            return GetCoursesResponse.getDefaultInstance();
+        }
+
         Set<Integer> tagIds = courseEntityList.stream()
                 .map(CourseEntity::getCourseTagEntityList)
                 .flatMap(Collection::stream)
                 .map(CourseTagEntity::getTagId)
                 .collect(Collectors.toSet());
 
-        Map<Integer, Tag> tagMap = tagService.getTags(GetTagsRequest.newBuilder().addAllTagIds(tagIds).build())
+        Map<Integer, Tag> tagMap = utilityService.getCourseUtilities(
+                        GetCourseUtilitiesRequest.newBuilder()
+                                .addAllTagIds(tagIds)
+                                .build())
                 .getTagsList().stream()
                 .collect(Collectors.toMap(Tag::getTagId, Function.identity()));
 

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "education/common/proto/education_common.proto";
+
+option java_package = "com.jcs.education.utility.service.proto.v1";
+option java_multiple_files = true;
+
+service EducationUtilityService {
+  rpc GetCourseUtilities(GetCourseUtilitiesRequest) returns (GetCourseUtilitiesResponse);
+}
+
+message GetCourseUtilitiesRequest {
+  repeated int32 tag_ids = 1;
+}
+
+message GetCourseUtilitiesResponse {
+  repeated education.common.Tag tags = 1;
+}
