@@ -6,6 +6,9 @@ grpc:
     education-utility-service:
       address: static://127.0.0.1:9900
       keep-alive-timeout: 5
+    education-course-unit-service:
+      address: static://127.0.0.1:9900
+      keep-alive-timeout: 5
 
 spring:
   application:
